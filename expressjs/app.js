@@ -7,7 +7,7 @@ const shopRoutes = require('./routes/shop')
 
 app.use(bodyparser.urlencoded({extended: false}))
 
-app.use(adminRoutes)
+app.use('/admin',adminRoutes)//**filtering the paths */
 
 app.use(shopRoutes)
 
