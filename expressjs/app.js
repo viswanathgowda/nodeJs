@@ -3,13 +3,13 @@ const express = require("express")
 const bodyparser = require("body-parser")
 const app = express()
 
-const adminRoutes = require('./routes/admin')
+const admindata = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
 
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/admin',adminRoutes)//**filtering the paths */
+app.use('/admin',admindata.routes)//**filtering the paths */
 
 app.use(shopRoutes)
 
