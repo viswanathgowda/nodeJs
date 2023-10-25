@@ -1,17 +1,17 @@
 const express = require("express")
-
+const bodyparser = require("body-parser")
 const app = express()
 
-app.use('/',(req, res, next)=>{
-    console.log('in the middle ware')
-    next() //**it will call the next middle ware, all middle ware works from top to bottom, if not given the next() callback method other middle ware wont execute, also even after sending the response in any of the middle ware if we call next() callback it will throw an error */
-})
+app.use(bodyparser.urlencoded())
 app.use('/add-product',(req, res, next)=>{
-    console.log('next middle ware')
-    res.send("<h1>add product</h1>")
+    res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add product</button></form>')
 })
+app.use('/product',(req, res, next)=>{
+    console.log(req.body)
+    res.redirect('/')
+})
+
 app.use('/',(req, res, next)=>{
-    console.log('in the middle ware')
     res.send("<h1>hello from expressjs</h1>")
 })
 
